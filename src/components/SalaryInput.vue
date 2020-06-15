@@ -1,11 +1,15 @@
 <template>
   <div>
-    <form v-if="!showFeedback" @submit.stop.prevent="checkForm">
+    <form v-if="!showFeedback" @submit.stop.prevent="submitForm">
       <label for="salary">{{ formText }}</label><br>
       <input class="salary-input" type="number" id="salary" name="salary" min="1" v-model="input" required><br>
       <input type="submit" value="Submit" :disabled="salarywasEntered">
     </form>
-    <FeedbackMessage v-if="showFeedback"/>
+    <FeedbackMessage
+      v-if="showFeedback"
+      :employeeMin="employeeMin"
+      :employerMax="employerMax"
+      :feedbackMessage="showFeedback"/>
   </div>
 </template>
 
@@ -34,13 +38,18 @@ export default {
     }
   },
   computed: {
+    employerMax () {
+      return this.$store.state.employerMax
+    },
+    employeeMin () {
+      return this.$store.state.employeeMin
+    },
     showFeedback () {
-      console.log('Store', this.$store)
       return this.$store.state.negotiationResult
     }
   },
   methods: {
-    checkForm () {
+    submitForm () {
       // Add check if all numbers entered in form !!
       const salaryInput = parseInt(this.input, 10)
       if (this.role === 'employee') {
@@ -49,13 +58,17 @@ export default {
         this.$store.commit('setEmployerInput', salaryInput)
       }
       this.formText = 'Thanks for submitting your offer!'
-      this.$store.dispatch('evaluateInputs')
+      this.evaluateOffers()
+    },
+    evaluateOffers () {
+      if (this.employerMax && this.employeeMin) {
+        this.$store.dispatch('evaluateInputs')
+      }
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="sass">
 .salary-input
   width: 150px

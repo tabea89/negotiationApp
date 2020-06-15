@@ -25,12 +25,8 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    evaluateInputs ({ commit, state }) {
-      if (state.employeeMin && state.employerMax) {
-        commit('setNegotiationResult')
-      } else {
-        return false
-      }
+    evaluateInputs ({ commit }) {
+      commit('setNegotiationResult')
     }
   }
 })

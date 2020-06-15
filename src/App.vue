@@ -7,7 +7,7 @@
       </div>
       <router-view/>
     </div>
-    <p class="weather">Weather in London: {{ weather }} °Celsius</p>
+    <p class="weather">Weather in London: {{ weather }} °C</p>
   </div>
 </template>
 
@@ -36,6 +36,8 @@ export default {
 </script>
 
 <style lang="sass">
+$shadow: 0px 19px 38px rgba(0, 0, 0, 0.3), 0px 15px 12px rgba(0, 0, 0, 0.22)
+
 #app
   display: flex
   flex-direction: column
@@ -57,16 +59,22 @@ export default {
       font-weight: bold
 
 .salary-form
-  width: 70%
+  width: 40%
   padding: 30px
-  box-shadow: 0px 19px 38px rgba(0, 0, 0, 0.3), 0px 15px 12px rgba(0, 0, 0, 0.22)
+  box-shadow: $shadow
   border-radius: 2px
 
+  @media only screen and (max-width: 600px)
+    width: 70%
+
 .weather
-  width: 70%
+  width: 40%
   margin-top: 80px
   padding: 10px
-  box-shadow: 0px 19px 38px rgba(0, 0, 0, 0.3), 0px 15px 12px rgba(0, 0, 0, 0.22)
+  box-shadow: $shadow
   border-radius: 2px
+
+  @media only screen and (max-width: 600px)
+    width: 70%
 
 </style>

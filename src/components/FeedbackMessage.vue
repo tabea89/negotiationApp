@@ -1,9 +1,9 @@
 <template>
-  <div class="form-message">
+  <div>
     <h3>Negotiation result: {{ feedbackMessage }}</h3>
-    <p>Maximum offer was: {{ employerMax }}</p>
-    <p>Minimum offer was: {{ employeeMin }} </p>
-    <button v-if="feedbackMessage === 'Failure'" @click="resetForm()">Try again</button>
+    <p>Maximum offer was: {{ employerMax }} EUR</p>
+    <p>Minimum offer was: {{ employeeMin }} EUR</p>
+    <button @click="resetForm()">Start again</button>
   </div>
 </template>
 
@@ -11,21 +11,10 @@
 
 export default {
   name: 'FeedbackMessage',
-  data () {
-    return {
-      inputText: 'Enter maximum offer'
-    }
-  },
-  computed: {
-    feedbackMessage () {
-      return this.$store.state.negotiationResult
-    },
-    employerMax () {
-      return this.$store.state.employerMax
-    },
-    employeeMin () {
-      return this.$store.state.employeeMin
-    }
+  props: {
+    employerMax: Number,
+    employeeMin: Number,
+    feedbackMessage: String
   },
   methods: {
     resetForm () {

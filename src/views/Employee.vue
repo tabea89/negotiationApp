@@ -5,7 +5,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import SalaryInput from '@/components/SalaryInput.vue'
 
 export default {
@@ -15,7 +14,7 @@ export default {
   },
   data () {
     return {
-      inputText: 'Please enter minimum offer'
+      inputText: 'Please enter minimum offer in EUR:'
     }
   },
   computed: {
