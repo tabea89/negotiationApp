@@ -1,8 +1,9 @@
 import { shallowMount } from '@vue/test-utils'
 import SalaryInput from '@/components/SalaryInput.vue'
+import FeedbackMessage from '@/components/FeedbackMessage.vue'
 
 describe('SalaryInput.vue', () => {
-  it('renders props.copy when passed', () => {
+  it('renders copy text when passed', () => {
     const copy = 'new copy'
     const wrapper = shallowMount(SalaryInput, {
       propsData: { copy },
@@ -16,24 +17,12 @@ describe('SalaryInput.vue', () => {
   })
 })
 
-/* function getshallowMountedComponent(Component, propsData) {
-  return shallowMount(Component, {
-    propsData
+describe('FeedbackMessage.vue', () => {
+  it('renders salary number when passed', () => {
+    const employerMax = 12
+    const wrapper = shallowMount(FeedbackMessage, {
+      propsData: { employerMax }
+    })
+    expect(wrapper.find("p").text()).toContain(employerMax)
   })
-}
-
-describe('SalaryInput', () => {
-  it('renders correctly with different props', () => {
-    expect(
-      getshallowMountedComponent(SalaryInput, {
-        copy: 'Hello'
-      }).text()
-    ).toBe('Hello')
-
-    expect(
-      getshallowMountedComponent(SalaryInput, {
-        copy: 'Bye'
-      }).text()
-    ).toBe('Bye')
-  })
-}) */
+})

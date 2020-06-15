@@ -2,7 +2,7 @@
   <div>
     <form v-if="!showFeedback" @submit.stop.prevent="submitForm">
       <label for="salary">{{ formText }}</label><br>
-      <input class="salary-input" type="number" id="salary" name="salary" min="1" v-model="input" required><br>
+      <input class="salary-input" type="number" id="salary" name="salary" min="1" v-model="input" :disabled="salarywasEntered" required><br>
       <input type="submit" value="Submit" :disabled="salarywasEntered">
     </form>
     <FeedbackMessage
@@ -57,6 +57,7 @@ export default {
       } else {
         this.$store.commit('setEmployerInput', salaryInput)
       }
+      this.input = null
       this.formText = 'Thanks for submitting your offer!'
       this.evaluateOffers()
     },
