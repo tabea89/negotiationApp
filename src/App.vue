@@ -2,8 +2,8 @@
   <div id="app">
     <div class="salary-form">
       <div class="tabs">
-        <router-link to="/employer">Employer</router-link> |
-        <router-link to="/employee">Employee</router-link>
+        <router-link :to="{ name: 'employer'}">Employer</router-link> |
+        <router-link :to="{ name: 'employee'}">Employee</router-link>
       </div>
       <router-view/>
     </div>

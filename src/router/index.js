@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/employer',
+    path: '/',
     name: 'employer',
     component: Employer
   },
